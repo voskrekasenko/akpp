@@ -1,0 +1,14 @@
+<html>
+<body ng-app="theWholeApp" ng-controller="IndexController as IndexCtrl" ng-cloak>
+  <super-awesome-component some-input="93" some-output="IndexCtrl.fancyValue = value"></super-awesome-component>
+  <super-awesome-component some-input="2" some-output="IndexCtrl.fancyValue = IndexCtrl.fancyValue + IndexCtrl.addValue"></super-awesome-component>
+  <p>A variable on the controller above the components: {{IndexCtrl.fancyValue}}</p>
+  
+  <a ui-sref="management-kpp" ui-sref-active="active">управление КПП</a>
+  <a ui-sref="management-auto" ui-sref-active="active">управление Авто</a>
+  <a ui-sref="management-links" ui-sref-active="active">управление Связями</a>
+
+    <ui-view></ui-view>
+</body>
+<tail><script src="index-bundle.js"></script></tail>
+</html>

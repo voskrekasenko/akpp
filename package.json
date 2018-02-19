@@ -1,28 +1,59 @@
 {
-  "name": "akpp",
-  "version": "1.0.0",
-  "description": "",
-  "main": "webpack.config.js",
+  "name": "modern-angularjs-starter",
+  "version": "0.0.1",
+  "description": "Base project",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack -p",
-    "watch": "webpack --watch"
+    "dev": "concurrently --kill-others \"webpack-dev-server --host 0.0.0.0\" \"npm run docs\"",
+    "docs_gen": "jsdoc -r -d jsdoc_output/ public/",
+    "docs_watch": "watch \"npm run docs_gen\" public",
+    "docs_serve": "echo Docs are being served on port 8082! && live-server -q --port=8082 --no-browser jsdoc_output/",
+    "docs": "concurrently --kill-others \"npm run docs_serve\" \"npm run docs_watch\"",
+    "postinstall": "bower install",
+    "webpack": "webpack",
+    "test": "mocha-webpack public/**/*.spec.js"
   },
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/narthur157/modern-angularjs-starter.git"
+  },
+  "keywords": [
+    "angularjs",
+    "webpack",
+    "sass",
+    "es6",
+    "es7",
+    "components"
+  ],
+  "author": "Nick Arthur",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/narthur157/modern-angularjs-starter/issues"
+  },
+  "homepage": "https://github.com/narthur157/modern-angularjs-starter#readme",
   "devDependencies": {
-    "angular": "^1.6.9",
-    "babel": "^6.23.0",
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.0",
-    "babel-eslint": "^8.2.1",
-    "babel-loader": "^7.1.2",
-    "babel-plugin-transform-runtime": "^6.23.0",
-    "babel-preset-env": "^1.6.1",
+    "@uirouter/core": "^5.0.3",
+    "angular": "^1.6.4",
+    "angular-ui-router": "^1.0.3",
+    "babel-cli": "^6.24.1",
+    "babel-loader": "^6.4.1",
+    "babel-plugin-add-module-exports": "^0.2.1",
     "babel-preset-es2015": "^6.24.1",
-    "babel-runtime": "^6.26.0",
-    "eslint": "^4.17.0",
-    "eslint-loader": "^1.9.0",
-    "webpack": "^3.11.0"
+    "chai": "^3.5.0",
+    "concurrently": "^3.4.0",
+    "css-loader": "^0.28.0",
+    "inject-loader": "^3.0.0",
+    "jsdoc": "^3.5.5",
+    "live-server": "^1.2.0",
+    "mocha": "^3.2.0",
+    "mocha-webpack": "^0.7.0",
+    "node-sass": "^4.5.2",
+    "raw-loader": "^0.5.1",
+    "sass-loader": "^6.0.3",
+    "sinon": "^2.1.0",
+    "style-loader": "^0.16.1",
+    "watch": "^1.0.2",
+    "webpack": "^2.3.3",
+    "webpack-dev-server": "^2.4.2"
   }
 }
