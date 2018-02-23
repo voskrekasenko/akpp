@@ -4,14 +4,16 @@
   "description": "Base project",
   "main": "index.js",
   "scripts": {
-    "dev": "concurrently --kill-others \"webpack-dev-server --host 0.0.0.0\" \"npm run docs\"",
+    "dev": "concurrently --kill-others \"webpack-dev-server --watch --host akpp.loc --public\" \"npm run docs\"",
+    "dev:server": "webpack-dev-server --watch --host akpp.loc",
     "docs_gen": "jsdoc -r -d jsdoc_output/ public/",
     "docs_watch": "watch \"npm run docs_gen\" public",
     "docs_serve": "echo Docs are being served on port 8082! && live-server -q --port=8082 --no-browser jsdoc_output/",
     "docs": "concurrently --kill-others \"npm run docs_serve\" \"npm run docs_watch\"",
     "postinstall": "bower install",
     "webpack": "webpack",
-    "test": "mocha-webpack public/**/*.spec.js"
+    "test": "mocha-webpack public/**/*.spec.js",
+    "eslint": "eslint public/index.js"
   },
   "repository": {
     "type": "git",
@@ -42,11 +44,15 @@
     "chai": "^3.5.0",
     "concurrently": "^3.4.0",
     "css-loader": "^0.28.0",
+    "eslint": "^4.9.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.7.0",
     "inject-loader": "^3.0.0",
     "jsdoc": "^3.5.5",
     "live-server": "^1.2.0",
     "mocha": "^3.2.0",
     "mocha-webpack": "^0.7.0",
+    "ng-annotate-loader": "^0.6.1",
     "node-sass": "^4.5.2",
     "raw-loader": "^0.5.1",
     "sass-loader": "^6.0.3",
@@ -54,6 +60,10 @@
     "style-loader": "^0.16.1",
     "watch": "^1.0.2",
     "webpack": "^2.3.3",
-    "webpack-dev-server": "^2.4.2"
+    "webpack-dev-server": "^2.4.2",
+    "webpack-dev-server-proxy": "0.0.8"
+  },
+  "dependencies": {
+    "angular-resource": "^1.6.9"
   }
 }
