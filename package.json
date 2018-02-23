@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "concurrently --kill-others \"webpack-dev-server --watch --host akpp.loc --public\" \"npm run docs\"",
-    "dev:server": "webpack-dev-server --watch --host akpp.loc",
+    "dev:server": "webpack-dev-server --watch",
     "docs_gen": "jsdoc -r -d jsdoc_output/ public/",
     "docs_watch": "watch \"npm run docs_gen\" public",
     "docs_serve": "echo Docs are being served on port 8082! && live-server -q --port=8082 --no-browser jsdoc_output/",
