@@ -26,15 +26,28 @@
         Авто
     </div>
     <div class="card-block">
-      <!-- марка -->
-      <div ng-repeat="car in $ctrl.cars">
-        <button ng-click="openVendor = !openVendor" class="btn btn-primary" type="button">{{car.name}}</button>
+      <!-- марки -->
+      <div ng-repeat="car in $ctrl.cars" class="with-border">
+        <p>
+          <button ng-click="openVendor = !openVendor" class="btn-xs btn-small btn-primary btn-margin">
+            <i ng-if="!openVendor">+</i>
+            <i ng-if="openVendor">-</i>
+          </button>
+          <span>{{car.name}}</span>
+        </p>
         <!-- модели -->
-        <div ng-if="openVendor" class="">
-          <div ng-repeat="model in car.carModel">
-            <button ng-click="openYears = !openYears" class="btn btn-warning" type="button">{{model.name}}</button>
+        <div ng-if="openVendor">
+          <div ng-repeat="model in car.carModel" class="with-border inner-block">
+            <p>
+              <button ng-click="openYears = !openYears" class="btn-xs btn-warning btn-margin" >
+                <i ng-if="!openYears">+</i>
+                <i ng-if="openYears">-</i>
+              </button>
+              <span>{{model.name}}</span>
+            </p>
+            <!-- годы -->
             <div ng-if="openYears" class="">
-              <span ng-repeat="year in model.carModification" class="badge badge-info">{{year.name}}</span>
+              <p ng-repeat="year in model.carModification"><span class="badge badge-warning">{{year.name}}</span></p>
             </div>
           </div>
         </div>
