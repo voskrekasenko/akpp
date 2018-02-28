@@ -65,8 +65,6 @@
   },
   "dependencies": {
     "angular-resource": "^1.6.9",
-    "angular-ui-router": "^1.0.3",
-    "bootstrap": "^4.0.0-alpha.6",
-    "glyphicons": "^0.2.0"
+    "angular-ui-router": "^1.0.3"
   }
 }
