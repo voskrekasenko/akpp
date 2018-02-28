@@ -7,8 +7,7 @@
         КПП
     </div>
     <div class="card-block">
-      <h4 class="card-title">Special title treatment</h4>
-      <p class="card-text">{{cars}}</p>
+      <p class="card-text" ng-repeat="car in $ctrl.cars">{{car.name}}</p>
       <a href="#" class="btn btn-primary">Go somewhere</a>
     </div>
   </div>
@@ -23,13 +22,23 @@
     </div>
   </div>
   <div class="card col-lg-4 col-md-4 col-sm-4">
-      <div class="card-header card-info row">
-          Авто
-      </div>
-      <div class="card-block">
-        <h4 class="card-title">Special title treatment</h4>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
+    <div class="card-header card-info row">
+        Авто
+    </div>
+    <div class="card-block">
+      <!-- марка -->
+      <div ng-repeat="car in $ctrl.cars">
+        <button ng-click="openVendor = !openVendor" class="btn btn-primary" type="button">{{car.name}}</button>
+        <!-- модели -->
+        <div ng-if="openVendor" class="">
+          <div ng-repeat="model in car.carModel">
+            <button ng-click="openYears = !openYears" class="btn btn-warning" type="button">{{model.name}}</button>
+            <div ng-if="openYears" class="">
+              <span ng-repeat="year in model.carModification" class="badge badge-info">{{year.name}}</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+  </div>
 </div>

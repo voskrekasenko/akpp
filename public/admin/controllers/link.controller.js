@@ -8,6 +8,7 @@ class LinkCtrl {
   getCars() {
     this._linkResource.query().$promise.then((res) => {
       this.cars = res;
+      console.log(res);
     });
   }
 }
