@@ -18,6 +18,7 @@ module.exports = {
       { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ },
       { test: /\.css$/, loader: 'style-loader!css-loader' },
       { test: /\.sass$/, loaders: ['style-loader', 'css-loader', 'sass-loader'] },
+      { test: /\.scss$/, loaders: ['style-loader', 'css-loader', 'sass-loader'] },
       { test: /\.html$/, loader: 'raw-loader' },
       // inline base64 URLs for <=8k images, direct URLs for the rest
       { test: /\.(png|jpg)$/, loader: 'url-loader?limit=8192' },

@@ -2,3 +2,4 @@ node_modules/*
 .tmp/*
 jsdoc_output/*
 *-bundle.js
+.vscode/

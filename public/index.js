@@ -2,7 +2,8 @@ import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 import ngResource from 'angular-resource';
 import LinkCtrl from './admin/controllers/link.controller';
-import linkResource from './admin/services/link.factory';
+import carsResource from './admin/services/cars.resource';
+import gearboxResource from './admin/services/gearbox.resource';
 import { theComponent } from './superAwesomeComponent/theComponent.js';
 import './admin/styles/main.sass';
 
@@ -20,7 +21,8 @@ angular.module('app', [uiRouter, ngResource])
   .component('superAwesomeComponent', theComponent)
   .controller('IndexController', IndexController)
   .controller('LinkCtrl', LinkCtrl)
-  .factory('linkResource', linkResource)
+  .factory('carsResource', carsResource)
+  .factory('gearboxResource', gearboxResource)
   .config(function($stateProvider) {
   var managementKppState = {
     name: 'management-kpp',
