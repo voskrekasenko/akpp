@@ -3,6 +3,10 @@ class LinkCtrl {
   constructor($window, carsResource, gearboxResource) {
     this._carsResource = carsResource;
     this._gearboxResource = gearboxResource;
+    this.addGearboxToInput = function (type) {
+      console.log('sey hi');
+      this.typeKpp = type;
+    };
     this.getCars();
     this.getGearboxes();
   }

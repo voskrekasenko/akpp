@@ -28,7 +28,7 @@
             </p>
             <!-- модели авто -->
             <div ng-if="openYears" class="">
-              <p class="vendor-paragraph" ng-repeat="model in manufacturer.gearboxModels"><span class="badge badge-warning">{{model.name}}</span></p>
+              <p class="vendor-paragraph" ng-repeat="model in manufacturer.gearboxModels"><span ng-click="$ctrl.addGearboxToInput(model.name)" class="badge badge-warning">{{model.name}}</span></p>
             </div>
           </div>
         </div>
@@ -39,10 +39,17 @@
     <div class="card-header card-info row">
         Связь
     </div>
-    <div class="card-block">
-      <h4 class="card-title">Special title treatment</h4>
-      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
+    <div class="card-block link-block">
+      <label for="gearbox-type">Gearbox type</label>
+      <div class="input-group">
+        <input id="gearbox-type" type="text" class="form-control" placeholder="gearbox type" ng-model="$ctrl.typeKpp">
+      </div>
+    </div>
+    <div class="card-block link-block">
+      <label for="auto-vendor">Auto vendor</label>
+      <div class="input-group">
+        <input id="auto-vendor" type="text" class="form-control" placeholder="auto vendor">
+      </div>
     </div>
   </div>
   <div class="card col-lg-4 col-md-4 col-sm-4">
