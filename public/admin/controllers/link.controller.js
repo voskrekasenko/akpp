@@ -1,14 +1,13 @@
 class LinkCtrl {
   /* @ngInject */
-  constructor($window, carsResource, gearboxResource) {
+  constructor($window, carsResource, gearboxResource, tableLinks) {
     this._carsResource = carsResource;
     this._gearboxResource = gearboxResource;
-    this.addGearboxToInput = function (type) {
-      console.log('sey hi');
-      this.typeKpp = type;
-    };
+    this._tableLinks = tableLinks;
     this.getCars();
     this.getGearboxes();
+    this.addGearboxToInput();
+    this.addAutoYearToInput();
   }
 
   getCars() {
@@ -22,6 +21,16 @@ class LinkCtrl {
       this.gearbox = res;
       console.log(res);
     });
+  }
+  addGearboxToInput(type, id) {
+    this.typeKpp = type;
+    this._tableLinks.get({ id }).$promise.then((res) => {
+      this.links = res;
+      console.log(res);
+    });
+  }
+  addAutoYearToInput(year) {
+    this.autoYear = year;
   }
 }
 

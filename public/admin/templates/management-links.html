@@ -28,7 +28,9 @@
             </p>
             <!-- модели авто -->
             <div ng-if="openYears" class="">
-              <p class="vendor-paragraph" ng-repeat="model in manufacturer.gearboxModels"><span ng-click="$ctrl.addGearboxToInput(model.name)" class="badge badge-warning">{{model.name}}</span></p>
+              <p class="vendor-paragraph" ng-repeat="model in manufacturer.gearboxModels">
+                <span ng-click="$ctrl.addGearboxToInput(model.name, model.id)" class="badge badge-warning">{{model.name}}</span>
+              </p>
             </div>
           </div>
         </div>
@@ -39,17 +41,33 @@
     <div class="card-header card-info row">
         Связь
     </div>
-    <div class="card-block link-block">
-      <label for="gearbox-type">Gearbox type</label>
+    <div class="link-block">
+      <label for="gearbox-type">Модель КПП</label>
       <div class="input-group">
-        <input id="gearbox-type" type="text" class="form-control" placeholder="gearbox type" ng-model="$ctrl.typeKpp">
+        <input id="gearbox-type" type="text" class="form-control" placeholder="Выберите модель КПП" ng-model="$ctrl.typeKpp">
       </div>
     </div>
-    <div class="card-block link-block">
-      <label for="auto-vendor">Auto vendor</label>
+    <div class="link-block">
+      <label for="auto-vendor">Модификация авто</label>
       <div class="input-group">
-        <input id="auto-vendor" type="text" class="form-control" placeholder="auto vendor">
+        <input id="auto-vendor" type="text" class="form-control" placeholder="Выберите модификацию авто" ng-model="$ctrl.autoYear">
       </div>
+    </div>
+    <div class="link-block">
+      <label for="auto-vendor">Двигатель</label>
+      <div class="input-group">
+        <input id="auto-vendor" type="text" class="form-control" placeholder="Введите название двигателя">
+      </div>
+    </div>
+    <div class="link-block">
+      <label for="auto-vendor">Привод</label>
+      <div class="input-group">
+        <input id="auto-vendor" type="text" class="form-control" placeholder="Введите название привода">
+      </div>
+    </div>
+    <div class="container text-center">
+      <button type="button" class="btn btn-outline-primary">Сохранить</button>
+      <button type="button" class="btn btn-outline-danger">Сброс</button>
     </div>
   </div>
   <div class="card col-lg-4 col-md-4 col-sm-4">
@@ -78,7 +96,9 @@
             </p>
             <!-- годы -->
             <div ng-if="openYears" class="">
-              <p class="vendor-paragraph" ng-repeat="year in model.carModification"><span class="badge badge-warning">{{year.name}}</span></p>
+              <p class="vendor-paragraph" ng-repeat="year in model.carModification">
+                <span ng-click="$ctrl.addAutoYearToInput(model.name)" class="badge badge-warning">{{year.name}}</span>
+              </p>
             </div>
           </div>
         </div>
