@@ -13,7 +13,7 @@
     "postinstall": "bower install",
     "webpack": "webpack",
     "test": "mocha-webpack public/**/*.spec.js",
-    "eslint": "eslint public/index.js"
+    "eslint": "eslint public/index"
   },
   "repository": {
     "type": "git",
@@ -54,6 +54,7 @@
     "mocha-webpack": "^0.7.0",
     "ng-annotate-loader": "^0.6.1",
     "node-sass": "^4.5.2",
+    "pre-commit": "^1.2.2",
     "raw-loader": "^0.5.1",
     "sass-loader": "^6.0.3",
     "sinon": "^2.1.0",

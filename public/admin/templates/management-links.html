@@ -29,7 +29,7 @@
             <!-- модели авто -->
             <div ng-if="openYears" class="">
               <p class="vendor-paragraph" ng-repeat="model in manufacturer.gearboxModels">
-                <span ng-click="$ctrl.addGearboxToInput(model.name, model.id)" class="badge badge-warning">{{model.name}}</span>
+                <span ng-click="$ctrl.addGearboxToInput(model)" class="badge badge-warning">{{model.name}}</span>
               </p>
             </div>
           </div>

@@ -5,7 +5,8 @@ import LinkCtrl from './admin/controllers/link.controller';
 import carsResource from './admin/services/cars.resource';
 import gearboxResource from './admin/services/gearbox.resource';
 import tableLinks from './admin/services/table.links.resource';
-import { theComponent } from './superAwesomeComponent/theComponent.js';
+import filterService from './admin/services/filter';
+import { theComponent } from './superAwesomeComponent/theComponent';
 import './admin/styles/main.sass';
 
 /**
@@ -25,7 +26,8 @@ angular.module('app', [uiRouter, ngResource])
   .factory('carsResource', carsResource)
   .factory('gearboxResource', gearboxResource)
   .factory('tableLinks', tableLinks)
-  .config(function($stateProvider) {
+  .factory('Filter', filterService)
+  .config(function ($stateProvider) {
   var managementKppState = {
     name: 'management-kpp',
     url: '/management-kpp',
