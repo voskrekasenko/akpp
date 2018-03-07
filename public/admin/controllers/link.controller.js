@@ -6,8 +6,10 @@ class LinkCtrl {
     this._tableLinks = tableLinks;
     this.filter = new Filter('links');
     this.filter.setParam('limit', 23);
-
-    console.log('f', this.filter.filters);
+    this.filter.addToFilters('cars', { year: 23, prop: 12 });
+    this.filter.setFiltersFromLocalStorage();
+    console.log('local filters', this.filter.filters);
+    console.log('storage filters', this.filter.getData('cars'));
     this.getCars();
     this.getGearboxes();
   }
