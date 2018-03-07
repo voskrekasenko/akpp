@@ -67,7 +67,7 @@
     </div>
     <div class="container text-center">
       <button type="button" class="btn btn-outline-primary">Сохранить</button>
-      <button type="button" class="btn btn-outline-danger">Сброс</button>
+      <button ng-click="$ctrl.resetFilters()" type="button" class="btn btn-outline-danger">Сброс</button>
     </div>
   </div>
   <div class="card col-lg-4 col-md-4 col-sm-4">
@@ -97,7 +97,7 @@
             <!-- годы -->
             <div ng-if="openYears" class="">
               <p class="vendor-paragraph" ng-repeat="year in model.carModification">
-                <span ng-click="$ctrl.addAutoYearToInput(model.name)" class="badge badge-warning">{{year.name}}</span>
+                <span ng-click="$ctrl.addAutoYearToInput(year)" class="badge badge-warning">{{year.name}}</span>
               </p>
             </div>
           </div>

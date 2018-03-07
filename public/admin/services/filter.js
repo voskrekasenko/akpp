@@ -1,6 +1,7 @@
 export default function filter($window) {
   return class Filter {
     constructor(filterName) {
+      this.filterName = filterName;
       this.getFiltersFromLocalStorage();
       this.getData(filterName);
     }
@@ -13,21 +14,23 @@ export default function filter($window) {
       this.filters = JSON.parse($window.localStorage.getItem('filters')) || {};
     }
 
-    setFiltersFromLocalStorage() {
+    setFiltersToLocalStorage() {
       $window.localStorage.setItem('filters', JSON.stringify(this.filters));
     }
 
-    addToFilters(key, value) {
+    setFilter(key, value) {
       this.filters[key] = value;
-      this.setFiltersFromLocalStorage();
+      this.setFiltersToLocalStorage();
     }
 
     setParam(key, value) {
       this.data[key] = value;
+      this.setFilter(this.filterName, this.data);
     }
 
     resetParams() {
       this.data = {};
+      this.setFilter(this.filterName, this.data);
     }
   };
 }
