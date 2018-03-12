@@ -5,7 +5,7 @@ class LinkCtrl {
     this._gearboxResource = gearboxResource;
     this._tableLinks = tableLinks;
     this.filter = new Filter('links');
-    console.log('local filters', this.filter.filters);
+    this.dataLink = {};
     this.getCars();
     this.getGearboxes();
   }
@@ -22,24 +22,33 @@ class LinkCtrl {
   }
 
   addGearboxToInput(model) {
-    this.typeKpp = model.name;
-    this.filter.setParam('gearId', model.id);
-    console.log(this.filter.filters.links);
-    this._tableLinks.get(this.filter.filters.links).$promise.then((res) => {
+    this.dataLink.gearboxModel = model.id;
+    this.filter.setParam('gearboxModel', model.id);
+    this._tableLinks.query(this.filter.filters.links).$promise.then((res) => {
       this.links = res;
+      // console.log(res);
+    });
+  }
+  addAutoYearToInput(year, modelId) {
+    this.dataLink.carModification = year.id;
+    this.dataLink.carModel = modelId;
+    this.filter.setParam('carModification', year.id);
+    this._tableLinks.query(this.filter.filters.links).$promise.then((res) => {
+      this.links = res;
+      // console.log(res);
+    });
+  }
+
+  createLink(data) {
+    console.log(data);
+    this._tableLinks.save(data).$promise.then((res) => {
       console.log(res);
     });
   }
-  addAutoYearToInput(year) {
-    this.autoYear = year.name;
-    this.filter.setParam('yearsId', year.id);
-    this._tableLinks.get(this.filter.filters.links).$promise.then((res) => {
-      this.links = res;
-      console.log(res);
-    });
-  }
+
   resetFilters() {
     this.filter.resetParams();
+    this.links = {};
   }
 }
 

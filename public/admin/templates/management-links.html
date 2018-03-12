@@ -2,7 +2,7 @@
   <strong>Управление связями</strong>
 </div>
 <div class="container-fluid row">
-  <div class="card col-lg-4 col-md-4 col-sm-4">
+  <div class="card col-lg-3 col-md-3 col-sm-3">
     <div class="card-header card-info row">
         КПП
     </div>
@@ -37,40 +37,63 @@
       </div>
     </div>
   </div>
-  <div class="card col-lg-4 col-md-4 col-sm-4">
+  <div class="card col-lg-6 col-md-6 col-sm-6">
     <div class="card-header card-info row">
         Связь
     </div>
     <div class="link-block">
       <label for="gearbox-type">Модель КПП</label>
       <div class="input-group">
-        <input id="gearbox-type" type="text" class="form-control" placeholder="Выберите модель КПП" ng-model="$ctrl.typeKpp">
+        <input id="gearbox-type" type="text" class="form-control" placeholder="Выберите модель КПП" ng-model="$ctrl.dataLink.gearboxModel.name">
       </div>
     </div>
     <div class="link-block">
       <label for="auto-vendor">Модификация авто</label>
       <div class="input-group">
-        <input id="auto-vendor" type="text" class="form-control" placeholder="Выберите модификацию авто" ng-model="$ctrl.autoYear">
+        <input id="auto-vendor" type="text" class="form-control" placeholder="Выберите модификацию авто" ng-model="$ctrl.dataLink.carModification.name">
       </div>
     </div>
     <div class="link-block">
       <label for="auto-vendor">Двигатель</label>
       <div class="input-group">
-        <input id="auto-vendor" type="text" class="form-control" placeholder="Введите название двигателя">
+        <input id="auto-vendor" type="text" class="form-control" placeholder="Введите название двигателя" ng-model="$ctrl.dataLink.driveUnit">
       </div>
     </div>
     <div class="link-block">
       <label for="auto-vendor">Привод</label>
       <div class="input-group">
-        <input id="auto-vendor" type="text" class="form-control" placeholder="Введите название привода">
+        <input id="auto-vendor" type="text" class="form-control" placeholder="Введите название привода" ng-model="$ctrl.dataLink.engine">
       </div>
     </div>
     <div class="container text-center">
-      <button type="button" class="btn btn-outline-primary">Сохранить</button>
+      <button ng-click="$ctrl.createLink($ctrl.dataLink)" type="button" class="btn btn-outline-primary">Сохранить</button>
       <button ng-click="$ctrl.resetFilters()" type="button" class="btn btn-outline-danger">Сброс</button>
     </div>
+    <div ng-if="$ctrl.links.length" class="link-table">
+      <h5 class="alert alert-success">Таблица связей</h5>
+      <table class="table table-hover">
+          <thead>
+            <tr class="bg-warning">
+              <th>Мод. КПП</th>
+              <th>Мод. авто</th>
+              <th>Марка авто</th>
+              <th>Привод</th>
+              <th>Двигатель</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="link in $ctrl.links">
+              <td>{{link.gearboxModel.name}}</td>
+              <td>{{link.carModification.name}}</td>
+              <td>{{link.carModel.name}}</td>
+              <td>{{link.driveUnit}}</td>
+              <td>{{link.engine}}</td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
   </div>
-  <div class="card col-lg-4 col-md-4 col-sm-4">
+  <div class="card col-lg-3 col-md-3 col-sm-3">
     <div class="card-header card-info row">
         Авто
     </div>
@@ -97,7 +120,7 @@
             <!-- годы -->
             <div ng-if="openYears" class="">
               <p class="vendor-paragraph" ng-repeat="year in model.carModification">
-                <span ng-click="$ctrl.addAutoYearToInput(year)" class="badge badge-warning">{{year.name}}</span>
+                <span ng-click="$ctrl.addAutoYearToInput(year, model.id)" class="badge badge-warning">{{year.name}}</span>
               </p>
             </div>
           </div>
