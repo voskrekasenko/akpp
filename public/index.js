@@ -6,6 +6,7 @@ import carsResource from './admin/services/cars.resource';
 import gearboxResource from './admin/services/gearbox.resource';
 import tableLinks from './admin/services/table.links.resource';
 import filterService from './admin/services/filter';
+import interceptorService from './admin/services/interceptor.service';
 import { theComponent } from './superAwesomeComponent/theComponent';
 import './admin/styles/main.sass';
 
@@ -27,28 +28,30 @@ angular.module('app', [uiRouter, ngResource])
   .factory('gearboxResource', gearboxResource)
   .factory('tableLinks', tableLinks)
   .factory('Filter', filterService)
-  .config(function ($stateProvider) {
-  var managementKppState = {
-    name: 'management-kpp',
-    url: '/management-kpp',
-    template: '<h3>management of kpp page!</h3>',
-  }
+  .factory('Interceptor', interceptorService)
+  .config(function ($stateProvider, $httpProvider) {
+    $httpProvider.interceptors.push('Interceptor');
+    var managementKppState = {
+      name: 'management-kpp',
+      url: '/management-kpp',
+      template: '<h3>management of kpp page!</h3>',
+    }
 
-  var managementAutoState = {
-    name: 'management-auto',
-    url: '/management-auto',
-    template: '<h3>management of auto page!</h3>',
-  }
+    var managementAutoState = {
+      name: 'management-auto',
+      url: '/management-auto',
+      template: '<h3>management of auto page!</h3>',
+    }
 
-  var managementLinksState = {
-    name: 'management-links',
-    url: '/management-links',
-    controller: 'LinkCtrl',
-    controllerAs: '$ctrl',
-    templateUrl: 'admin/templates/management-links.html',
-  }
+    var managementLinksState = {
+      name: 'management-links',
+      url: '/management-links',
+      controller: 'LinkCtrl',
+      controllerAs: '$ctrl',
+      templateUrl: 'admin/templates/management-links.html',
+    }
 
-  $stateProvider.state(managementKppState);
-  $stateProvider.state(managementAutoState);
-  $stateProvider.state(managementLinksState);
+    $stateProvider.state(managementKppState);
+    $stateProvider.state(managementAutoState);
+    $stateProvider.state(managementLinksState);
   });
