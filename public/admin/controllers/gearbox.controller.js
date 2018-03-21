@@ -11,6 +11,14 @@ class GearboxCtrl {
       this.gearbox = res;
     });
   }
+
+  editGearboxType(gearbox) {
+    this.gearboxName = gearbox.name;
+    this._gearboxResource.get({ id: gearbox.id }).$promise.then((res) => {
+      this.gearboxType = res;
+      console.log(res);
+    });
+  }
 }
 
 export default GearboxCtrl;
