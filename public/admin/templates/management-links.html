@@ -44,13 +44,13 @@
     <div class="link-block">
       <label for="gearbox-type">Модель КПП</label>
       <div class="input-group">
-        <input id="gearbox-type" type="text" class="form-control" placeholder="Выберите модель КПП" ng-model="$ctrl.fullLink.sendData.gearboxModel">
+        <input id="gearbox-type" type="text" class="form-control" placeholder="Выберите модель КПП" ng-model="$ctrl.fullLink.gearboxModel">
       </div>
     </div>
     <div class="link-block">
       <label for="auto-vendor">Модификация авто</label>
       <div class="input-group">
-        <input id="auto-vendor" type="text" class="form-control" placeholder="Выберите модификацию авто" ng-model="$ctrl.fullLink.sendData.carModification">
+        <input id="auto-vendor" type="text" class="form-control" placeholder="Выберите модификацию авто" ng-model="$ctrl.fullLink.carModification">
       </div>
     </div>
     <div class="link-block">
@@ -69,7 +69,7 @@
       <button ng-if="$ctrl.fullLink.id" ng-click="$ctrl.removeLink($ctrl.fullLink.id)" type="button" class="btn btn-outline-danger">Удалить</button>
       <button ng-if="$ctrl.fullLink.id" ng-click="$ctrl.updateLink($ctrl.fullLink)" type="button" class="btn btn-outline-success">Редактировать</button>
       
-      <button ng-if="!$ctrl.fullLink.id" ng-click="$ctrl.createLink($ctrl.fullLink.dataLink)" type="button" class="btn btn-outline-primary">Создать</button>
+      <button ng-if="!$ctrl.fullLink.id" ng-click="$ctrl.createLink($ctrl.fullLink.sendData)" type="button" class="btn btn-outline-primary">Создать</button>
       <button ng-click="$ctrl.resetFilters()" type="button" class="btn btn-outline-warning">Сброс</button>
     </div>
     <div ng-if="$ctrl.links.length" class="link-table">

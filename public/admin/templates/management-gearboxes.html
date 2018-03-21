@@ -1,0 +1,53 @@
+<div class="alert alert-success" role="alert">
+  <strong>Дерево КПП</strong>
+</div>
+<div class="container-fluid row">
+  <div class="card col-lg-6 col-md-6 col-sm-6">
+    <div class="card-header card-info row">
+      КПП
+    </div>
+    <div class="card-block">
+      <!-- кпп -->
+      <div ng-repeat="gearbox in $ctrl.gearbox" class="with-border">
+        <p class="vendor-paragraph">
+          <button ng-click="openVendor = !openVendor" class="btn-xs btn-small btn-primary btn-margin">
+            <i ng-if="!openVendor">+</i>
+            <i ng-if="openVendor">-</i>
+          </button>
+          <span>{{gearbox.name}}</span>
+        </p>
+        <!-- марки авто -->
+        <div ng-if="openVendor">
+          <div ng-repeat="manufacturer in gearbox.gearboxManufacturers" class="with-border inner-block">
+            <p class="vendor-paragraph">
+              <button ng-click="openYears = !openYears" class="btn-xs btn-warning btn-margin">
+                <i ng-if="!openYears">+</i>
+                <i ng-if="openYears">-</i>
+              </button>
+              <span ng-click="$ctrl.addGearboxToInput(model)">{{manufacturer.name}}</span>
+            </p>
+            <!-- модели авто -->
+            <div ng-if="openYears" class="">
+              <p class="vendor-paragraph" ng-repeat="model in manufacturer.gearboxModels">
+                <span ng-click="$ctrl.addGearboxToInput(model)" class="badge badge-warning">{{model.name}}</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card col-lg-6 col-md-6 col-sm-6">
+    <label class="control-label col-lg-5 col-md-5 col-sm-5 ng-scope" ng-if="$ctrl.isEditing">Тип КПП *</label>
+    <div class="form-group col-lg-7 col-md-7 col-sm-7">
+      <label for="exampleFormControlSelect2">Example multiple select</label>
+      <select multiple class="form-control" id="exampleFormControlSelect2">
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+      </select>
+    </div>
+  </div>
+</div>

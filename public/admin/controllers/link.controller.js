@@ -23,11 +23,13 @@ class LinkCtrl {
   }
 
   addGearboxToInput(model) {
+    this.fullLink.gearboxModel = model.name;
     this.fullLink.sendData.gearboxModel = model.id;
     this.filter.setParam('gearboxModel', model.id);
     this.queryLinks();
   }
   addAutoYearToInput(year, modelId) {
+    this.fullLink.carModification = year.name;
     this.fullLink.sendData.carModification = year.id;
     this.fullLink.sendData.carModel = modelId;
     this.filter.setParam('carModification', year.id);
@@ -40,6 +42,8 @@ class LinkCtrl {
   }
   createLink(data) {
     this._tableLinks.save(data).$promise.then((res) => {
+      this.queryLinks();
+      this.resetFullLink();
     });
   }
   updateLink(data) {

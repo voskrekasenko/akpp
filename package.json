@@ -35,7 +35,6 @@
   "homepage": "https://github.com/narthur157/modern-angularjs-starter#readme",
   "devDependencies": {
     "@uirouter/core": "^5.0.3",
-    "angular": "^1.6.4",
     "babel-cli": "^6.24.1",
     "babel-loader": "^6.4.1",
     "babel-plugin-add-module-exports": "^0.2.1",
@@ -65,7 +64,9 @@
     "webpack-dev-server-proxy": "0.0.8"
   },
   "dependencies": {
+    "angular": "^1.6.4",
     "angular-resource": "^1.6.9",
+    "angular-typeahead": "^1.0.2",
     "angular-ui-router": "^1.0.3",
     "bootstrap": "^4.0.0"
   }
