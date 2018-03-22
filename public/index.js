@@ -5,6 +5,7 @@ import LinkCtrl from './admin/controllers/link.controller';
 import GearboxCtrl from './admin/controllers/gearbox.controller';
 import carsResource from './admin/services/cars.resource';
 import gearboxResource from './admin/services/gearbox.resource';
+import gearboxManufacturer from './admin/services/gearbox.manufacturer';
 import tableLinks from './admin/services/table.links.resource';
 import filterService from './admin/services/filter';
 import interceptorService from './admin/services/interceptor.service';
@@ -15,6 +16,7 @@ angular.module('app', [uiRouter, ngResource])
   .controller('GearboxCtrl', GearboxCtrl)
   .factory('carsResource', carsResource)
   .factory('gearboxResource', gearboxResource)
+  .factory('gearboxManufacturer', gearboxManufacturer)
   .factory('tableLinks', tableLinks)
   .factory('Filter', filterService)
   .factory('Interceptor', interceptorService)
