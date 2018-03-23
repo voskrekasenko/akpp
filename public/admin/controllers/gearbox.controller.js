@@ -15,21 +15,21 @@ class GearboxCtrl {
   }
 
   editGearboxType(gearbox) {
-    this.gearboxName = gearbox.name;
     this.gearboxTypes = [];
     this._gearboxManufacturer.get({ id: gearbox.id }).$promise.then((res) => {
       this.gearboxManufacturer = res;
       this.gearboxManufacturer.gearboxTypes.forEach((elem) => {
-        console.log(elem);
         this.gearboxTypes.push(elem.id);
       });
       console.log(this.gearboxTypes);
     });
   }
-  updateGearboxType(data) {
-    this._gearboxResource.update({ id: data.id }, data.sendData).$promise.then((res) => {
-      this.resetFullLink();
-      this.queryLinks();
+  updateGearboxType(gearbox, types) {
+    types.forEach((el, index) => {
+      types[index] = el.toString();
+    });
+    this._gearboxManufacturer.update({ id: gearbox.id }, { name: gearbox.name, gearboxTypes: types }).$promise.then((res) => {
+      // console.log(res);
     });
   }
 }
