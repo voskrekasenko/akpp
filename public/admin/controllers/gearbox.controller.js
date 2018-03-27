@@ -5,6 +5,7 @@ class GearboxCtrl {
     this._gearboxManufacturer = gearboxManufacturer;
     this.filter = new Filter('gearboxes');
     this.kppTypes = [{ id: 1, name: 'АКПП' }, { id: 2, name: 'МКПП' }, { id: 3, name: 'DSG' }, { id: 4, name: 'CVT' }, { id: 5, name: 'Роботы' }];
+    this.gearboxManufacturer = {};
     this.getGearboxes();
   }
 
@@ -21,16 +22,29 @@ class GearboxCtrl {
       this.gearboxManufacturer.gearboxTypes.forEach((elem) => {
         this.gearboxTypes.push(elem.id);
       });
-      console.log(this.gearboxTypes);
     });
   }
   updateGearboxType(gearbox, types) {
     types.forEach((el, index) => {
       types[index] = el.toString();
     });
-    this._gearboxManufacturer.update({ id: gearbox.id }, { name: gearbox.name, gearboxTypes: types }).$promise.then((res) => {
-      // console.log(res);
+    this._gearboxManufacturer.update({ id: gearbox.id }, { name: gearbox.name, gearboxTypes: types }).$promise.then(() => {});
+  }
+  deleteGearboxType(gearbox) {
+    this._gearboxManufacturer.remove({ id: gearbox.id }).$promise.then(() => {
+      this.resetGearbox();
+      this.getGearboxes();
     });
+  }
+  cancel() {
+    this.resetGearbox();
+  }
+  resetGearbox() {
+    this.gearboxManufacturer = {};
+    this.gearboxTypes = [];
+  }
+  checkLength(obj) {
+    return Object.keys(obj).length;
   }
 }
 

@@ -3,8 +3,15 @@
 </div>
 <div class="container-fluid row">
   <div class="card col-lg-6 col-md-6 col-sm-6">
-    <div class="card-header card-info row">
+    <div class="card-header card-info row form-inline kkp-add">
       КПП
+      <div>
+        <select class="form-control form-control-sm">
+          <option value="1" selected>Производитель</option>
+          <option value="2">Модель</option>
+        </select>
+        <button ng-click="$ctrl.updateGearboxType()" type="submit" class="btn btn-sm btn-outline-info form-control">Добавить</button>
+      </div>
     </div>
     <div class="card-block">
       <!-- кпп -->
@@ -37,7 +44,7 @@
       </div>
     </div>
   </div>
-  <div class="card container col-lg-6 col-md-6 col-sm-6">
+  <div ng-if="$ctrl.checkLength($ctrl.gearboxManufacturer) > 0" class="card container col-lg-6 col-md-6 col-sm-6">
     <div class="card-header card-info row">
       Редактирование производителя
     </div>
@@ -61,8 +68,8 @@
       <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 text-center">
           <button ng-click="$ctrl.updateGearboxType($ctrl.gearboxManufacturer, $ctrl.gearboxTypes)" type="submit" class="btn btn-outline-success">Сохранить</button>
-          <button type="button" class="btn btn-outline-secondary" ng-click="">Отмена</button>
-          <button type="button" class="btn btn-outline-danger" ng-click="">Удалить</button>
+          <button type="button" class="btn btn-outline-secondary" ng-click="$ctrl.cancel()">Отмена</button>
+          <button type="button" class="btn btn-outline-danger" ng-click="$ctrl.deleteGearboxType($ctrl.gearboxManufacturer)">Удалить</button>
         </div>
       </div>
     </div>
