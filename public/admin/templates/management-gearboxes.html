@@ -6,11 +6,11 @@
     <div class="card-header card-info row form-inline kkp-add">
       КПП
       <div>
-        <select class="form-control form-control-sm">
-          <option value="1" selected>Производитель</option>
-          <option value="2">Модель</option>
+        <select class="form-control form-control-sm"
+          ng-model="$ctrl.categories.selected" 
+          ng-options="type.id as type.name for type in $ctrl.categories.values">
         </select>
-        <button ng-click="$ctrl.updateGearboxType()" type="submit" class="btn btn-sm btn-outline-info form-control">Добавить</button>
+        <button ng-click="$ctrl.additionElement($ctrl.categories.selected)" type="submit" class="btn btn-sm btn-outline-info form-control">Добавить</button>
       </div>
     </div>
     <div class="card-block">
@@ -31,12 +31,12 @@
                 <i ng-if="!openYears">+</i>
                 <i ng-if="openYears">-</i>
               </button>
-              <span ng-click="$ctrl.editGearboxType(manufacturer)">{{manufacturer.name}}</span>
+              <span ng-click="$ctrl.editGearboxManufacturer(manufacturer)">{{manufacturer.name}}</span>
             </p>
             <!-- модели авто -->
             <div ng-if="openYears" class="">
               <p class="vendor-paragraph" ng-repeat="model in manufacturer.gearboxModels">
-                <span ng-click="$ctrl.addGearboxToInput(model)" class="badge badge-warning">{{model.name}}</span>
+                <span ng-click="$ctrl.editGearboxModel(model)" class="badge badge-warning">{{model.name}}</span>
               </p>
             </div>
           </div>
@@ -44,9 +44,9 @@
       </div>
     </div>
   </div>
-  <div ng-if="$ctrl.checkLength($ctrl.gearboxManufacturer) > 0" class="card container col-lg-6 col-md-6 col-sm-6">
+  <div ng-if="$ctrl.editingManufacturer || $ctrl.creatingManufacturer" class="card container col-lg-6 col-md-6 col-sm-6">
     <div class="card-header card-info row">
-      Редактирование производителя
+      {{$ctrl.formEventText}}
     </div>
     <div class="form-group row">
       <label class="col-lg-4 col-md-4 col-sm-4">Тип КПП *</label>
@@ -67,9 +67,10 @@
     <div class="form-actions">
       <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 text-center">
-          <button ng-click="$ctrl.updateGearboxType($ctrl.gearboxManufacturer, $ctrl.gearboxTypes)" type="submit" class="btn btn-outline-success">Сохранить</button>
+          <button ng-if="$ctrl.creatingManufacturer" ng-click="$ctrl.createGearboxManufacturer($ctrl.gearboxManufacturer, $ctrl.gearboxTypes)" type="submit" class="btn btn-outline-success">Сохранить</button>
+          <button ng-if="$ctrl.editingManufacturer" ng-click="$ctrl.updateGearboxManufacturer($ctrl.gearboxManufacturer, $ctrl.gearboxTypes)" type="submit" class="btn btn-outline-success">Сохранить</button>
           <button type="button" class="btn btn-outline-secondary" ng-click="$ctrl.cancel()">Отмена</button>
-          <button type="button" class="btn btn-outline-danger" ng-click="$ctrl.deleteGearboxType($ctrl.gearboxManufacturer)">Удалить</button>
+          <button ng-if="$ctrl.editingManufacturer" type="button" class="btn btn-outline-danger" ng-click="$ctrl.deleteGearboxManufacturer($ctrl.gearboxManufacturer)">Удалить</button>
         </div>
       </div>
     </div>

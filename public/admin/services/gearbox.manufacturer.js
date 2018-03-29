@@ -4,5 +4,9 @@ export default function gearboxManufacturer($resource) {
       method: 'PUT',
       isArray: true,
     },
+    save: {
+      method: 'POST',
+      isArray: true,
+    },
   });
 }
