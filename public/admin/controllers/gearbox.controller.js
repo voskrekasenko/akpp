@@ -1,8 +1,9 @@
 class GearboxCtrl {
   /* @ngInject */
-  constructor($window, gearboxResource, gearboxManufacturer, Filter) {
+  constructor($window, gearboxResource, gearboxManufacturer, gearboxModel, Filter) {
     this._gearboxResource = gearboxResource;
     this._gearboxManufacturer = gearboxManufacturer;
+    this._gearboxModel = gearboxModel;
     this.filter = new Filter('gearboxes');
     this.kppTypes = [{ id: '1', name: 'АКПП' }, { id: '2', name: 'МКПП' }, { id: '3', name: 'DSG' }, { id: '4', name: 'CVT' }, { id: '5', name: 'Роботы' }];
     this.categories = { selected: 1, values: [{ id: 1, name: 'Производитель' }, { id: 2, name: 'Модель' }] };
@@ -22,6 +23,13 @@ class GearboxCtrl {
       this.getGearboxes();
     });
   }
+  // need autocomplete model.gearboxManufacturer
+  createGearboxModel(model) {
+    this._gearboxModel.save({ name: model.name, gearboxManufacturer: model.gearboxManufacturer.id, gearboxType: model.gearboxType.id }).$promise.then(() => {
+      this.reset();
+      this.getGearboxes();
+    });
+  }
 
   editGearboxManufacturer(gearbox) {
     this.reset();
@@ -33,11 +41,14 @@ class GearboxCtrl {
       });
     });
   }
-  
+
   editGearboxModel(model) {
     this.reset();
     this.editingModelForm();
-    // to be continue..
+    this._gearboxModel.get({ id: model.id }).$promise.then((res) => {
+      this.gearboxModel = res;
+      this.gearboxModel.gearboxType.id = this.gearboxModel.gearboxType.id.toString();
+    });
   }
 
   additionElement(type) {
@@ -61,8 +72,22 @@ class GearboxCtrl {
     });
   }
 
+  updateGearboxModel(model) {
+    this._gearboxModel.update({ id: model.id }, { name: model.name, gearboxManufacturer: model.gearboxManufacturer.id, gearboxType: model.gearboxType.id }).$promise.then((res) => { 
+      this.reset();
+      this.getGearboxes();
+    });
+  }
+  
   deleteGearboxManufacturer(gearbox) {
     this._gearboxManufacturer.remove({ id: gearbox.id }).$promise.then(() => {
+      this.reset();
+      this.getGearboxes();
+    });
+  }
+
+  deleteGearboxModel(model) {
+    this._gearboxModel.remove({ id: model.id }).$promise.then(() => {
       this.reset();
       this.getGearboxes();
     });
@@ -74,6 +99,7 @@ class GearboxCtrl {
 
   reset() {
     this.gearboxManufacturer = {};
+    this.gearboxModel = {};
     this.gearboxTypes = [];
     this.editingManufacturer = false;
     this.editingModel = false;
